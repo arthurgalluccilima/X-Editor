@@ -45,7 +45,7 @@ def main():
     window.maxsize(window_width, window_height)
     window.minsize(window_width, window_height)
 
-    text_area = Text(window, font="Arial 18", bg="white", fg="black")  # width = 100% of the screen
+    text_area = Text(window, font="Arial 18", bg="white", fg="black")
     text_area.grid(row=1, column=0)
 
     frame = Frame(window)
