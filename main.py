@@ -1,8 +1,11 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+
 window_width = 1000
-window_height = 650
+window_height = 600
+
+buttons_width = 8
 
 
 def open_file(window, text_area):
@@ -31,6 +34,10 @@ def save_file(window, textarea):
         window.title(f"Saved: {file_path}")
 
 
+def change_font(font_name, text_area):
+    text_area["font"] = f"{font_name} 16"
+
+
 def main():
     window = Tk()
     window.title("Text Editor")
@@ -38,20 +45,41 @@ def main():
     window.maxsize(window_width, window_height)
     window.minsize(window_width, window_height)
 
-    text_area = Text(window, font="Arial 18", bg="white", fg="black")
-    text_area.grid(row=0, column=1)
+    text_area = Text(window, font="Arial 16", bg="white", fg="black", width=100)  # width = 100% of the screen
+    text_area.grid(row=1, column=0)
 
-    frame = Frame(window, padx=5)
-    frame.grid(row=0, column=0, sticky="ns")
+    frame = Frame(window)
+    frame.grid(row=0, column=0, sticky="ew")
 
-    save_button = Button(frame, text="Save", padx=5, pady=5, command=lambda: save_file(window, text_area))
-    save_button.grid(row=0, column=0, sticky="ew")
+    top_frame = Frame(frame)
+    top_frame.grid(row=0, column=0)
 
-    open_button = Button(frame, text="Open", padx=5, pady=5, command=lambda: open_file(window, text_area))
-    open_button.grid(row=1, column=0, sticky="ew")
+    bottom_frame = Frame(frame, padx=100)
+    bottom_frame.grid(row=0, column=1)
 
-    window.bind("<Control-s>", lambda x: save_file(window, text_area))
+    open_button = Button(top_frame, text="Open", width=buttons_width, command=lambda: open_file(window, text_area))
+    open_button.grid(row=0, column=0, sticky="ns")
+
+    save_button = Button(top_frame, text="Save", width=buttons_width, command=lambda: save_file(window, text_area))
+    save_button.grid(row=0, column=1, sticky="ns")
+
+    font = StringVar(window)
+    font.set("Font")
+
+    arial_button = Button(bottom_frame, text="Arial", width=buttons_width)
+    arial_button["command"] = lambda: change_font("Arial", text_area)
+    arial_button.grid(row=0, column=0, sticky="ew")
+
+    verdana_button = Button(bottom_frame, text="Verdana", width=buttons_width)
+    verdana_button["command"] = lambda: change_font("Verdana", text_area)
+    verdana_button.grid(row=0, column=1, sticky="ew")
+
+    courier_button = Button(bottom_frame, text="Courier", width=buttons_width)
+    courier_button["command"] = lambda: change_font("Courier", text_area)
+    courier_button.grid(row=0, column=2, sticky="ew")
+
     window.bind("<Control-o>", lambda x: open_file(window, text_area))
+    window.bind("<Control-s>", lambda x: save_file(window, text_area))
     window.bind("<Control-q>", lambda x: quit())
 
     window.mainloop()
