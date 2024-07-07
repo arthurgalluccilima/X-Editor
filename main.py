@@ -35,7 +35,7 @@ def save_file(window, textarea):
 
 
 def change_font(font_name, text_area):
-    text_area["font"] = f"{font_name} 16"
+    text_area["font"] = f"{font_name} 18"
 
 
 def main():
@@ -45,7 +45,7 @@ def main():
     window.maxsize(window_width, window_height)
     window.minsize(window_width, window_height)
 
-    text_area = Text(window, font="Arial 16", bg="white", fg="black", width=100)  # width = 100% of the screen
+    text_area = Text(window, font="Arial 18", bg="white", fg="black")  # width = 100% of the screen
     text_area.grid(row=1, column=0)
 
     frame = Frame(window)
@@ -77,6 +77,10 @@ def main():
     courier_button = Button(bottom_frame, text="Courier", width=buttons_width)
     courier_button["command"] = lambda: change_font("Courier", text_area)
     courier_button.grid(row=0, column=2, sticky="ew")
+
+    likhan_button = Button(bottom_frame, text="Likhan", width=buttons_width)
+    likhan_button["command"] = lambda: change_font("Likhan", text_area)
+    likhan_button.grid(row=0, column=3)
 
     window.bind("<Control-o>", lambda x: open_file(window, text_area))
     window.bind("<Control-s>", lambda x: save_file(window, text_area))
