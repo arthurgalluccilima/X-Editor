@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
+window_width = 1000
+window_height = 650
+
 
 def open_file(window, text_area):
     file_path = askopenfilename()  # filetypes=[("Text Files", "*.txt")]
@@ -11,7 +14,7 @@ def open_file(window, text_area):
     text_area.delete(1.0, END)  # That line will delete all text inside text_area from line 1 and character 0 to the END
     with open(file_path, "r") as file:
         content = file.read()
-        text_area.insert(END, content)  # As we have deleted all the the text, the end should be the beginning of the text
+        text_area.insert(END, content)  # We have deleted all the text, so the end should be the beginning of the text
 
     window.title(f"Open File: {file_path}")
 
@@ -31,9 +34,9 @@ def save_file(window, textarea):
 def main():
     window = Tk()
     window.title("Text Editor")
-    # window.geometry("600x600")
-    # window.rowconfigure(0, minsize=400)
-    # window.columnconfigure(1, minsize=500)
+    window.geometry(f"{window_width}x{window_height}")
+    window.maxsize(window_width, window_height)
+    window.minsize(window_width, window_height)
 
     text_area = Text(window, font="Arial 18", bg="white", fg="black")
     text_area.grid(row=0, column=1)
@@ -55,4 +58,3 @@ def main():
 
 
 main()
-
