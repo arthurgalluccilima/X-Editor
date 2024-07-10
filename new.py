@@ -5,7 +5,7 @@ from tkinter import ttk
 
 class Editor:
     def __init__(self, master):
-        self.text_area = Text(master, font="Arial 14")
+        self.text_area = Text(master, font="Arial 12")
         self.text_area.grid(column=0, row=1, columnspan=3, stick="news")
 
         self.toolbar_left = Frame(master)
@@ -77,6 +77,7 @@ class Editor:
 
 
 root = Tk()
+root.title("X Editor")
 
 root.grid_rowconfigure(1, weight=1)
 root.grid_columnconfigure(0, weight=1)
