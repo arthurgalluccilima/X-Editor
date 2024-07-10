@@ -48,6 +48,10 @@ class Editor:
         )
         self.font_sizes_dropdown.grid(column=3, row=0)
 
+        master.bind("<Control-o>", lambda *args: self.open_file())
+        master.bind("<Control-s>", lambda *args: self.save_file())
+        master.bind("<Control-q>", lambda *args: quit())
+
     def open_file(self):
         file_path = askopenfilename()
 
@@ -69,7 +73,7 @@ class Editor:
         with open(file_path, "w") as file:
             file.write(self.text_area.get(1.0, END))
 
-    def change_font(self, argument):
+    def change_font(self, *args):
         font_name = self.current_font_family.get()
         font_size = self.current_font_size.get()
 
