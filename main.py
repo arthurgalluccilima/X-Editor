@@ -82,6 +82,8 @@ class Editor:
 
 root = Tk()
 root.title("X Editor")
+icon = PhotoImage(file="icon.png")
+root.wm_iconphoto(False, icon)
 
 root.grid_rowconfigure(1, weight=1)
 root.grid_columnconfigure(0, weight=1)
