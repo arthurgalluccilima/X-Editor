@@ -5,7 +5,7 @@ The X Editor is a python based simple text editor. For now, it's a really simple
 
 ```
 $ git clone https://github.com/arthurgalluccilima/X-Editor.git
-´´´
+```<br>
 Extract it, cd in to directory and run the command:
 ```
 $ python3 main.py
