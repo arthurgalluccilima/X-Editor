@@ -8,9 +8,8 @@ $ git clone https://github.com/arthurgalluccilima/X-Editor.git
 ```
 
 Extract it, cd in to directory and run the command:
-
 ```
 $ python3 main.py
-´´´
+```
 
 <img alt="X Editor" src="icon.png" width="200">
