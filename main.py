@@ -5,14 +5,14 @@ from tkinter import ttk
 
 class Editor:
     def __init__(self, master):
-        self.text_area = Text(master, font="Arial 12")
-        self.text_area.grid(column=0, row=1, columnspan=3, stick="news")
-
         self.toolbar_left = Frame(master)
         self.toolbar_left.grid(column=0, row=0, columnspan=1, sticky="w")
 
         self.toolbar_right = Frame(master)
         self.toolbar_right.grid(column=2, row=0, columnspan=1, sticky="e")
+
+        self.text_area = Text(master, font="Arial 12")
+        self.text_area.grid(column=0, row=1, columnspan=3, stick="news")
 
         self.open_button = Button(self.toolbar_left, text="Open")
         self.open_button["command"] = lambda: self.open_file()
@@ -63,6 +63,7 @@ class Editor:
 
         self.text_area.delete(1.0, END)
         self.text_area.insert(END, file_text)
+        root.title(f"X Editor: {file_path.split('/')[-1]}")
 
     def save_file(self):
         file_path = asksaveasfilename()
@@ -72,6 +73,8 @@ class Editor:
 
         with open(file_path, "w") as file:
             file.write(self.text_area.get(1.0, END))
+
+        root.title(f"X Editor: {file_path.split('/')[-1]}")
 
     def change_font(self, *args):
         font_name = self.current_font_family.get()
