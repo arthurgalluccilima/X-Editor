@@ -2,12 +2,13 @@ from tkinter import *
 from cryptography.fernet import Fernet
 
 
-def cryptographer():
+def cryptographer(editor_content):
     class App:
         def __init__(self, master):
             # Bottom side
             self.message_entry = Text(master, font="Arial 14")
             self.message_entry.grid(row=1, column=0, columnspan=4, sticky="news")
+            self.message_entry.insert(END, editor_content)
 
             # Toolbar
             self.left_toolbar = Frame(master)
