@@ -4,6 +4,8 @@ from tkinter import ttk
 
 
 class Editor:
+    filetype = "txt"
+
     def __init__(self, master):
         self.toolbar_left = Frame(master)
         self.toolbar_left.grid(column=0, row=0, columnspan=1, sticky="w")
@@ -63,7 +65,11 @@ class Editor:
 
         self.text_area.delete(1.0, END)
         self.text_area.insert(END, file_text)
-        root.title(f"X Editor: {file_path.split('/')[-1]}")
+
+        filename = file_path.split("/")[-1]
+        root.title(f"X Editor: {filename}")
+
+        self.mark_programming_language(filename)
 
     def save_file(self):
         file_path = asksaveasfilename()
@@ -74,13 +80,28 @@ class Editor:
         with open(file_path, "w") as file:
             file.write(self.text_area.get(1.0, END))
 
-        root.title(f"X Editor: {file_path.split('/')[-1]}")
+        filename = file_path.split("/")[-1]
+        root.title(f"X Editor: {filename}")
 
     def change_font(self, *args):
         font_name = self.current_font_family.get()
         font_size = self.current_font_size.get()
 
         self.text_area["font"] = f"{font_name} {font_size}"
+
+    def mark_programming_language(self, filename):
+        filetype = filename.split(".")[-1]
+        if filetype == "txt":
+            print("Text")
+        elif filetype == "py":
+            print("Python")
+            for line in self.text_area.get(1.0, END).splitlines():
+                with open("reserved_words_python.txt", "r") as reserved_words_file:
+                    for word in reserved_words_file:
+                        print(self.text_area.get(1.0, END).find(word))
+
+        else:
+            print("That's text or we dont have support to this language yet.")
 
 
 root = Tk()
