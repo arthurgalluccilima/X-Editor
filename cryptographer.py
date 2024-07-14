@@ -29,10 +29,7 @@ def cryptographer(editor_content):
             self.generate_key_button = Button(self.right_toolbar, text="Generate key", command=lambda: self.generate_key())
             self.generate_key_button.grid(row=0, column=3, sticky="news")
 
-        def generate_key(self):
-            key = (Fernet.generate_key())
-            self.key_entry.delete(0, END)
-            self.key_entry.insert(END, key)
+            root.bind("<Control-g>", lambda *args: self.generate_key())
 
         def encrypt_message(self):
             key = self.key_entry.get()
@@ -51,6 +48,11 @@ def cryptographer(editor_content):
             decrypted_message = fer.decrypt(encrypted_message.encode().decode())
             self.message_entry.delete(1.0, END)
             self.message_entry.insert(END, decrypted_message)
+
+        def generate_key(self):
+            key = (Fernet.generate_key())
+            self.key_entry.delete(0, END)
+            self.key_entry.insert(END, key)
 
     root = Tk()
     root.title("Cryptographer")
