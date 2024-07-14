@@ -25,7 +25,7 @@ class Editor:
         self.save_button["command"] = lambda: self.save_file()
         self.save_button.grid(column=1, row=0)
 
-        self.cryptographer_button = Button(self.toolbar_left, text="Cryptographer", command=lambda: cryptographer())
+        self.cryptographer_button = Button(self.toolbar_left, text="Cryptographer", command=lambda: cryptographer(self.text_area.get(1.0, END)))
         self.cryptographer_button.grid(column=2, row=0)
 
         self.available_font_sizes = [12, 14, 16, 18, 20, 24, 26, 28, 30]
