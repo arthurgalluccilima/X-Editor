@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 from tkinter import ttk
+from cryptographer import cryptographer
 
 
 class Editor:
@@ -24,9 +25,11 @@ class Editor:
         self.save_button["command"] = lambda: self.save_file()
         self.save_button.grid(column=1, row=0)
 
+        self.cryptographer_button = Button(self.toolbar_left, text="Cryptographer", command=lambda: cryptographer())
+        self.cryptographer_button.grid(column=2, row=0)
+
         self.available_font_sizes = [12, 14, 16, 18, 20, 24, 26, 28, 30]
         self.current_font_size = IntVar()
-
         self.available_font_families = ["Arial", "Verdana", "Georgia", "Tahoma"]
         self.current_font_family = StringVar()
 
@@ -38,7 +41,7 @@ class Editor:
             direction="below",
             command=self.change_font
         )
-        self.font_families_dropdown.grid(column=2, row=0, sticky="ns")
+        self.font_families_dropdown.grid(column=3, row=0, sticky="ns")
 
         self.font_sizes_dropdown = ttk.OptionMenu(
             self.toolbar_right,
@@ -48,7 +51,7 @@ class Editor:
             direction="below",
             command=self.change_font
         )
-        self.font_sizes_dropdown.grid(column=3, row=0)
+        self.font_sizes_dropdown.grid(column=4, row=0)
 
         master.bind("<Control-o>", lambda *args: self.open_file())
         master.bind("<Control-s>", lambda *args: self.save_file())
