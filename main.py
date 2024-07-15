@@ -5,8 +5,6 @@ from cryptography.fernet import Fernet
 
 
 class Editor:
-    filetype = "txt"
-
     def __init__(self, master):
         self.left_toolbar = Frame(master)
         self.left_toolbar.grid(column=0, row=0, columnspan=1, sticky="w")
